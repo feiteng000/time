@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            padding:0;
+            margin: 0;
+        }
+        #box{
+            position: relative;
+            margin: 1rem auto;
+            width: 50rem;
+            height: 75rem;
+            background-color: white;
+            box-shadow: 0 0 2rem grey;
+            border-radius: 3rem;
+        }
+        #text{
+            display: block;
+            width: 45rem;
+            height: 15rem;
+            margin: 0 auto;
+            font-size: 3rem;
+            border:0;
+        }
+        #age{
+            display: inline-block;
+            width: 6rem;
+            height: 4rem;
+            margin-left: 10rem;
+            font-size: 4rem;
+            border: .1rem solid gray;
+        }
+        #ok{
+            display: inline-block;
+            width: 5rem;
+            height: 4rem;
+            font-size: 3rem;
+        }
+        #biao{
+            position: absolute;
+            bottom:5rem;
+            left: 2rem;
+            width: 45rem;
+        }
+        #shizhen,#fenzhen{
+            width: 3rem;
+            position: absolute;
+            bottom: 26.5rem;
+            left: 23rem;
+        }
+        #shizhen{
+            transform: rotate(0deg);
+            transform-origin: 50% 93%;
+        }
+        #fenzhen{
+            transform: rotate(0deg);
+            transform-origin: 50% 95%;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <textarea id="text"></textarea>
+    <div id="show" style="display: none">假如人的一生有八十年,把这八十年看做一天二十四个小时,一年就等于18分钟.请在下边的对话框输入你的年龄
+    </div>
+    <input type="text" id="age">
+    <input type="button" id="ok" value="ok" onclick="time()">
+    <img id="biao" src="./images/zhongbiao.gif">
+    <img id="shizhen" src="./images/shizhen.gif">
+    <img id="fenzhen" src="./images/fenzhen.gif">
+</div>
+</body>
+<script language="javascript">
+    /*说明*/
+    var index=0;
+    var text = document.getElementById("text");
+    var str = document.getElementById("show").innerHTML;
+    function type(){
+        text.innerText = str.substring(0,index++);
+    }
+    setInterval(type, 100);
+
+    /*钟表*/
+
+    var ok = document.getElementById("ok");
+    function time() {
+        var age = document.getElementById("age").value;
+        var time = age*18;
+        var x = 360/12*time/60;//时针转动的角度
+        var y = 360/60*time;//分针转动的角度
+        var shiZ = document.getElementById("shizhen");
+        var fenZ = document.getElementById("fenzhen");
+        shiZ.style.transform = "rotate("+(360/12*time/60)+")";
+        fenZ.style.transform = "rotate("+(360/60*time)+")";
+        console.log(time,shiZ.style.transform);
+    }
+
+</script>
+</html>
